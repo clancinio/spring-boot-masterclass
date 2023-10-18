@@ -21,22 +21,23 @@ public class PassengerController {
   private final PassengerService passengerService;
 
   @GetMapping
-  List<Passenger> getPassengers() {
+  public List<Passenger> getPassengers() {
     return passengerService.getPassengers();
   }
 
   @PostMapping
-  void createPassenger(@RequestBody Passenger passenger) {
+  public void createPassenger(@RequestBody Passenger passenger) {
     passengerService.createPassenger(passenger);
   }
 
   @PutMapping
-  void deleteCustomer(@RequestBody Passenger passenger) {
+  public void updatePassenger(@RequestBody Passenger passenger) {
     passengerService.updatePassenger(passenger);
   }
 
-  @DeleteMapping(path = "/{customerId}")
-  void deleteCustomer(@PathVariable("customerId") Long id) {
+  @DeleteMapping("/{customerId}")
+  public void deletePassenger(@PathVariable("customerId") Long id) {
     passengerService.deletePassenger(id);
   }
 }
+
