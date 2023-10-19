@@ -15,4 +15,11 @@ public final class Mapper {
         .email(entity.getEmail())
         .build();
   }
+
+  public static PassengerEntity toPassengerEntity(Passenger passenger) {
+    return PassengerEntity.builder()
+        .name(passenger.getName())
+        .email(passenger.getEmail())
+        .build();
+  }
 }

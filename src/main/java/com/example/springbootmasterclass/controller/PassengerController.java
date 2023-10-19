@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/v1/customers")
+@RequestMapping(path = "api/v1/passengers")
 @RequiredArgsConstructor
 public class PassengerController {
 
@@ -35,8 +35,8 @@ public class PassengerController {
     passengerService.updatePassenger(passenger);
   }
 
-  @DeleteMapping("/{customerId}")
-  public void deletePassenger(@PathVariable("customerId") Long id) {
+  @DeleteMapping("/{passengerId}")
+  public void deletePassenger(@PathVariable("passengerId") Long id) {
     passengerService.deletePassenger(id);
   }
 }
