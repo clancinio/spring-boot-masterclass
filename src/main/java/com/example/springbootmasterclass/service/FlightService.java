@@ -1,6 +1,7 @@
 package com.example.springbootmasterclass.service;
 
 import static com.example.springbootmasterclass.constant.ErrorConstant.Message.NOT_FOUND;
+import static com.example.springbootmasterclass.util.Mapper.toFlight;
 import static com.example.springbootmasterclass.util.Mapper.toFlightEntity;
 
 import com.example.springbootmasterclass.api.model.Flight;
@@ -9,6 +10,7 @@ import com.example.springbootmasterclass.repository.FlightRepository;
 import com.example.springbootmasterclass.repository.entity.FlightEntity;
 import com.example.springbootmasterclass.util.Mapper;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,12 @@ public class FlightService {
     return flightEntities.stream()
         .map(Mapper::toFlight)
         .toList();
+  }
+
+  public Flight getFlight(Long id) {
+    FlightEntity flightEntity = flightRepository.findById(id)
+        .orElseThrow(() -> new NotFoundException(NOT_FOUND, String.format("Flight with id %s not found", id)));
+    return toFlight(flightEntity);
   }
 
   public void createFlight(Flight passenger) {
@@ -56,5 +64,6 @@ public class FlightService {
         }
     );
   }
+
 }
 
