@@ -1,6 +1,6 @@
 package com.example.springbootmasterclass.controller;
 
-import com.example.springbootmasterclass.model.Post;
+import com.example.springbootmasterclass.api.model.Post;
 import com.example.springbootmasterclass.service.PostService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

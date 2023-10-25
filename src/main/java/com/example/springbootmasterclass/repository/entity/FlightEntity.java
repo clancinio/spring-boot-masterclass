@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
@@ -19,16 +18,18 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "passenger")
-public class PassengerEntity {
+public class FlightEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @NotBlank
-  private String name;
+  private String flightNumber;
 
-  @Email
   @NotBlank
-  private String email;
+  private String departureDate;
+
+  @NotBlank
+  private String departureTime;
 }

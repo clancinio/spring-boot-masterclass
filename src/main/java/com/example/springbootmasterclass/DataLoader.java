@@ -1,8 +1,7 @@
 package com.example.springbootmasterclass;
 
-import com.example.springbootmasterclass.model.Passenger;
-import com.example.springbootmasterclass.repository.PassengerRepository;
-import com.example.springbootmasterclass.repository.entity.PassengerEntity;
+import com.example.springbootmasterclass.repository.FlightRepository;
+import com.example.springbootmasterclass.repository.entity.FlightEntity;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -13,24 +12,25 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
-  private final PassengerRepository passengerRepository;
+  private final FlightRepository flightRepository;
 
   @Override
   public void run(String... args) throws Exception {
-    List<PassengerEntity> examplePassengers = createExamplePassengers();
-    passengerRepository.saveAll(examplePassengers);
+    List<FlightEntity> examplePassengers = createExampleFlights();
+    flightRepository.saveAll(examplePassengers);
   }
 
-  private List<PassengerEntity> createExamplePassengers() {
-    List<PassengerEntity> passengers = new ArrayList<>();
+  private List<FlightEntity> createExampleFlights() {
+    List<FlightEntity> flightEntities = new ArrayList<>();
 
-    for (int i = 1; i <= 20; i++) {
-      passengers.add(PassengerEntity.builder()
-          .name("Passenger " + i)
-          .email("passenger" + i + "@example.com")
+    for (int i = 2000; i < 2005; i++) {
+      flightEntities.add(FlightEntity.builder()
+          .flightNumber("CL" + i)
+          .departureDate("27-10-2023")
+          .departureTime("07::45")
           .build());
     }
-    return passengers;
+    return flightEntities;
   }
 }
 

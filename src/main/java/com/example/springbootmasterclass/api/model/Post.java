@@ -1,4 +1,4 @@
-package com.example.springbootmasterclass.model;
+package com.example.springbootmasterclass.api.model;
 
 import lombok.Data;
 
