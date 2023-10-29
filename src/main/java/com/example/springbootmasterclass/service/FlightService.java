@@ -10,11 +10,12 @@ import com.example.springbootmasterclass.repository.FlightRepository;
 import com.example.springbootmasterclass.repository.entity.FlightEntity;
 import com.example.springbootmasterclass.util.Mapper;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class FlightService {
@@ -22,6 +23,7 @@ public class FlightService {
   private final FlightRepository flightRepository;
 
   public List<Flight> getFlights() {
+    log.info("Retrieving all flights...");
     List<FlightEntity> flightEntities = flightRepository.findAll();
     return flightEntities.stream()
         .map(Mapper::toFlight)
@@ -29,13 +31,24 @@ public class FlightService {
   }
 
   public Flight getFlight(Long id) {
+    log.info("Retrieving flight with id {} ...", id);
     FlightEntity flightEntity = flightRepository.findById(id)
-        .orElseThrow(() -> new NotFoundException(NOT_FOUND, String.format("Flight with id %s not found", id)));
+        .orElseThrow(() -> new NotFoundException(NOT_FOUND,
+            String.format("Flight with id %s not found", id)));
     return toFlight(flightEntity);
   }
 
-  public void createFlight(Flight passenger) {
-    flightRepository.save(toFlightEntity(passenger));
+  public Flight getFlightByFlightNumber(String flightNumber) {
+    log.info("Retrieving flight with flight number {} ...", flightNumber);
+    FlightEntity flightEntity = flightRepository.findByFlightNumber(flightNumber)
+        .orElseThrow(() -> new NotFoundException(NOT_FOUND,
+            String.format("Flight with flight number %s not found", flightNumber)));
+    return toFlight(flightEntity);
+  }
+
+  public void createFlight(Flight flight) {
+    log.info("Creating flight: " + flight);
+    flightRepository.save(toFlightEntity(flight));
   }
 
   public void updateFlight(Flight flight) {
@@ -66,4 +79,3 @@ public class FlightService {
   }
 
 }
-

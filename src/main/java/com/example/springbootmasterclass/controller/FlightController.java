@@ -30,6 +30,11 @@ public class FlightController {
     return flightService.getFlight(id);
   }
 
+  @GetMapping("/flightNumber/{flightNumber}")
+  public Flight getFlightByFlightNumber(@PathVariable("flightNumber") String flightNumber) {
+    return flightService.getFlightByFlightNumber(flightNumber);
+  }
+
   @PostMapping
   public void createFlight(@RequestBody Flight flight) {
     flightService.createFlight(flight);

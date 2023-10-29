@@ -24,12 +24,12 @@ public class FlightEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
+  @NotBlank(message = "Flight Number cannot be blank")
   private String flightNumber;
 
-  @NotBlank
+  @NotBlank(message = "Departure Date cannot be blank")
   private String departureDate;
 
-  @NotBlank
+  @NotBlank(message = "Departure Time cannot be blank")
   private String departureTime;
 }

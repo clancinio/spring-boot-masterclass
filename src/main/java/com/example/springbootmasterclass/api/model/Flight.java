@@ -1,6 +1,8 @@
 package com.example.springbootmasterclass.api.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +11,7 @@ import lombok.Data;
 @Builder
 public class Flight {
 
+  @JsonProperty(access = Access.READ_ONLY)
   private Long id;
 
   @NotBlank
