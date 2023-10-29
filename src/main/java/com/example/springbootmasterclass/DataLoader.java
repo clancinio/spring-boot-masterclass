@@ -33,4 +33,3 @@ public class DataLoader implements CommandLineRunner {
     return flightEntities;
   }
 }
-

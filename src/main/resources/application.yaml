@@ -1,14 +1,21 @@
+# Common configurations for all profiles
 spring:
-  datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
   jpa:
     hibernate:
       ddl-auto: update
-      show-sql: true
+    show-sql: true
 
+# Configurations for the 'local' profile (using H2)
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+      datasource:
+        driverClassName: org.h2.Driver
+        url: jdbc:h2:mem:testdb
+        username: sa
+        password:
+      h2:
+        console:
+          enabled: true
