@@ -25,10 +25,10 @@ class FlightServiceTest {
   private FlightService flightService;
 
   @Test
-  void shouldFindFlightByName() {
+  void shouldFindFlightByFlightNumber() {
 
     // Given
-    FlightEntity expectedFlight = TestUtil.createFlight();
+    FlightEntity expectedFlight = TestUtil.createFlightEntity();
     Optional<FlightEntity> flight = Optional.of(expectedFlight);
     Mockito.when(flightRepository.findByFlightNumber(FLIGHT_NUMBER)).thenReturn(flight);
 
