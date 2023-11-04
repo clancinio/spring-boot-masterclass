@@ -1,21 +1,42 @@
 # Common configurations for all profiles
+server:
+  port: 8081
+
 spring:
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
+welcome:
+  message: Welcome to Spring Boot!
+
 # Configurations for the 'local' profile (using H2)
 ---
+
 spring:
   config:
     activate:
       on-profile: local
-      datasource:
-        driverClassName: org.h2.Driver
-        url: jdbc:h2:mem:testdb
-        username: sa
-        password:
-      h2:
-        console:
-          enabled: true
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:testdb-local
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:testdb-dev
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
